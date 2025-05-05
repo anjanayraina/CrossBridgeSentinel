@@ -1,1 +1,5 @@
 .venv/
+resources/.env.local
+resources/.env.prod
+__pycache__/
+crossbridge_sentinel.egg-info/
