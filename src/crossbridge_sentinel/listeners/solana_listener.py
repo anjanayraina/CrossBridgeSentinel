@@ -2,7 +2,7 @@ from solana.rpc.async_api import AsyncClient
 from crossbridge_sentinel.listeners.base import BaseListener
 from crossbridge_sentinel.messaging.redis_pubsub import RedisPubSub
 from crossbridge_sentinel.config import get_settings
-from crossbridge_sentinel.schemas.events import MintEvent
+from crossbridge_sentinel.schemas.mint_event import MintEvent
 from datetime import datetime
 
 settings = get_settings()
@@ -20,13 +20,13 @@ class SolanaListener(BaseListener):
         for log in logs:
             # parse out transfer_id, recipient, amount, etc.
             mint = MintEvent(
-                transfer_id=…,
+                transfer_id="",
                 from_chain="ethereum",
                 to_chain="solana",
-                minter=…,
-                recipient=…,
-                amount=…,
-                token=…,
+                minter="",
+                recipient="",
+                amount="",
+                token="",
                 timestamp=datetime.utcnow()
             )
             self.channel.publish(mint.model_dump())

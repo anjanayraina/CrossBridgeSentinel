@@ -1,7 +1,8 @@
 import asyncio
 from crossbridge_sentinel.messaging.redis_pubsub import RedisPubSub
 from crossbridge_sentinel.logger import get_logger
-from crossbridge_sentinel.schemas.events import LockEvent, MintEvent
+from crossbridge_sentinel.schemas.lock_event import LockEvent
+from crossbridge_sentinel.schemas.mint_event import MintEvent
 from datetime import datetime
 
 class Reconciler:
@@ -17,7 +18,7 @@ class Reconciler:
         await asyncio.gather(self._consume(self.lock_sub, self.handle_lock),
                              self._consume(self.mint_sub, self.handle_mint))
 
-    async def _consume(self, pubsub, handler):
+    async def _consume(self, pubsub, handler): 
         for data in pubsub.listen():
             handler(data)
 
