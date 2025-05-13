@@ -10,7 +10,7 @@ settings = get_settings()
 class EthereumListener(BaseListener):
     def __init__(self, poll_interval=2.0):
         super().__init__(poll_interval)
-        self.w3 = Web3(Web3.HTTPProvider(settings.eth_rpc_url))
+        self.w3 = Web3(Web3.HTTPProvider(settings.ethereum_rpc_url))
         self.channel = RedisPubSub(channel="bridge:locks")
         self.contract = self.w3.eth.contract(address=settings.eth_bridge_addr, abi=settings.eth_bridge_abi)
 
