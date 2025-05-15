@@ -8,11 +8,10 @@ ENV_FILE = os.path.normpath(
     os.path.join(
         os.path.dirname(__file__),
         "..", "..",
-        "resources",
+        "resources/env",
         f".env.{APP_ENV}",
     )
 )
-
 class Settings(BaseSettings):
     # ─── RPC Endpoints ────────────────────────────────────────
     ethereum_rpc_url: AnyUrl  = Field(..., env="ETHEREUM_RPC_URL")
@@ -22,6 +21,7 @@ class Settings(BaseSettings):
         ..., env="ETH_BRIDGE_ABI_PATH",
         description="Filesystem path to your Ethereum bridge contract ABI JSON"
     )
+    print(f"path : {eth_bridge_abi_path}")
     # ─── Redis & PubSub ──────────────────────────────────────
     redis_url:        str     = Field(
         "redis://localhost:6379/0", env="REDIS_URL"
